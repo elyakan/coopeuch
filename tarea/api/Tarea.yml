@@ -1,0 +1,438 @@
+openapi: 3.0.0
+info:
+  description: >-
+    Provides GET, DELETE, PATCH, POST to tables in server XXX
+    usr_bd.tarea
+  version: 1.0.0
+  title: coopeuch_test
+paths:
+  /tarea:
+    get:
+      tags:
+        - /tarea
+      summary: list all tarea
+      description: list all tarea
+      operationId: getTarea
+      #parameters:
+      #  - name: Authorization
+      #    in: header
+      #    description: The auth token
+      #    required: true
+      #    schema:
+      #      type: string
+      #  - name: Cache-Control
+      #    in: header
+      #    required: false
+      #    description: >-
+      #      The header to specify if cache should be bypassed and data
+      #   should be
+      #      fetched from source. Cache will be used by default, unless
+      # value is
+      #      set to "no-cache".
+      #    schema:
+      #      type: string
+      responses:
+        '200':
+          description: Return all
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tarea'
+        '400':
+          description: >-
+            Indicates that the server could not understand the request. This is
+            not the same as 422 which indicates a validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '401':
+          description: >-
+            Unauthorized.  This will be returned when no authentication
+            information is provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '403':
+          description: >-
+            The principal associated with the request does not have sufficient
+            rights to perform this operation on the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '404':
+          description: The requested resource was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '422':
+          description: >-
+            The request was syntactically correct but was not semantically
+            correct. Usually indicating a validation problem.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+    patch:
+      tags:
+        - /tarea
+      summary: update tarea
+      description: update tarea
+      operationId: updateTarea
+      requestBody:
+        description: tarea object that needs to be updated to the store
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Tarea"
+      responses:
+        '200':
+          description: Signature method successfully patches
+        '400':
+          description: >-
+            Indicates that the server could not understand the request. This is
+            not the same as 422 which indicates a validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '401':
+          description: >-
+            Unauthorized.  This will be returned when no authentication
+            information is provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '403':
+          description: >-
+            The principal associated with the request does not have sufficient
+            rights to perform this operation on the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '404':
+          description: The requested resource was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '422':
+          description: >-
+            The request was syntactically correct but was not semantically
+            correct. Usually indicating a validation problem.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+    post:
+      tags:
+        - /tarea
+      summary: create tarea
+      description: create tarea
+      operationId: createTarea
+      requestBody:
+        description: tarea object that needs to be added to the store
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Tarea"
+      #      parameters:
+      #        - name: Authorization
+      #          in: header
+      #          description: 'the auth token'
+      #          required: true
+      #          schema:
+      #            type: string
+      responses:
+        '201':
+          description: Signature method successfully create
+        '400':
+          description: >-
+            Indicates that the server could not understand the request. This is
+            not the same as 422 which indicates a validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '401':
+          description: >-
+            Unauthorized.  This will be returned when no authentication
+            information is provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '403':
+          description: >-
+            The principal associated with the request does not have sufficient
+            rights to perform this operation on the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '404':
+          description: The requested resource was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '422':
+          description: >-
+            The request was syntactically correct but was not semantically
+            correct. Usually indicating a validation problem.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+  /tarea/detail:
+    get:
+      tags:
+        - /tarea/detail
+      summary: list detail of tarea
+      description: list detail of tarea
+      operationId: getDetTarea
+      parameters:
+        - name: identificador
+          in: query
+          description: filtering tarea
+          required: true
+          schema:
+            type: integer
+            format: int64
+        #- name: Authorization
+        #  in: header
+        #  description: The auth token
+        #  required: true
+        #  schema:
+        #    type: string
+        - name: Cache-Control
+          in: header
+          required: false
+          description: >-
+            The header to specify if cache should be bypassed and data should be
+            fetched from source. Cache will be used by default, unless value is
+            set to "no-cache".
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Return all products of all categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tarea'
+        '400':
+          description: >-
+            Indicates that the server could not understand the request. This is
+            not the same as 422 which indicates a validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '401':
+          description: >-
+            Unauthorized.  This will be returned when no authentication
+            information is provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '403':
+          description: >-
+            The principal associated with the request does not have sufficient
+            rights to perform this operation on the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '404':
+          description: The requested resource was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '422':
+          description: >-
+            The request was syntactically correct but was not semantically
+            correct. Usually indicating a validation problem.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+    delete:
+      tags:
+        - /tarea/detail
+      summary: eliminates tarea
+      description: eliminates tarea
+      operationId: deleteTarea
+      parameters:
+        - name: identificador
+          in: query
+          description: Path parameter to define the categoy to get
+          required: true
+          schema:
+            type: integer
+            format: int64
+        #- name: Authorization
+        #  in: header
+        #  description: The auth token
+        #  required: true
+        #  schema:
+        #    type: string
+      responses:
+        '200':
+          description: Signature method successfully deleted
+        '400':
+          description: >-
+            Indicates that the server could not understand the request. This is
+            not the same as 422 which indicates a validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '401':
+          description: >-
+            Unauthorized.  This will be returned when no authentication
+            information is provided.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '403':
+          description: >-
+            The principal associated with the request does not have sufficient
+            rights to perform this operation on the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '404':
+          description: The requested resource was not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '422':
+          description: >-
+            The request was syntactically correct but was not semantically
+            correct. Usually indicating a validation problem.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyDataResponse'
+servers:
+  - url: /v1
+components:
+  schemas:
+    Tarea:
+      type: object
+      properties:
+        identificador:
+          type: integer
+          format: code
+          example: 1
+          description: 'Unique tarea'
+        descripcion:
+          type: string
+          example: descripcion de tarea
+          description: 'some about tarea'
+        fechaCreacion:
+          type: string
+          example: 12/10/2001 15:30:36
+          description: 'datatime for tarea'
+        vigetne:
+          type: boolean
+          example: carlos
+          description: 'last name of users b2b'
+    Cursors:
+      description: Cursors object for identifying pagination before and after
+      type: object
+      properties:
+        next_cursor_key:
+          description: >-
+            The next cursor key for the set of entries retrieved. This value is
+            left absent when there are no more values to return
+          type: string
+          format: number
+          example: '888888888'
+    Notification:
+      type: object
+      properties:
+        code:
+          type: string
+          format: code
+          example: E422CDNPAYRCPTG001
+          description: 'Notification code. First character indicates severity (E,W,I).'
+        message:
+          type: string
+          format: sentence
+          example: Something is invalid
+          description: >-
+            Description of the error or information notification. Where the
+            response is 2xx, it's a notification with informational details
+            about this response.
+        uuid:
+          type: string
+          format: uuid
+          example: aadde-ddddee-eeeedd-eeeedd
+          description: Unique identifier for this notification
+        timestamp:
+          type: string
+          format: date-time
+          example: '2017-10-12T20:38:45.408Z'
+          description: Timestamp of the notification
+        metadata:
+          type: object
+          additionalProperties:
+            type: object
+          description: Context specific to this area. May not be provided.
+    EmptyDataResponse:
+      type: object
+      properties:
+        data:
+          type: string
+        notifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Notification'
